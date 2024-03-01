@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'a1ccccf3-661d-437b-9210-db17bc276b8e'
+  dockerRegistryServiceConnection: 'd5941683-80de-4c56-af68-726a7fd9126e'
   imageRepository: 'douglassantannamslearndockerappservice'
-  containerRegistry: 'onlytesting.azurecr.io'
+  containerRegistry: 'testtodelete.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/dotnet/Dockerfile'
   tag: '$(Build.BuildId)'
 
