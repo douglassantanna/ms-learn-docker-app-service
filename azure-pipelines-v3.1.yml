@@ -26,6 +26,9 @@ stages:
     
     - script: cd dotnet && docker build -t newimage .
       displayName: 'Build Docker Image'
+    
+    - script: docker images
+      displayName: 'Docker Image'
 
     # - script: docker tag currentImage ghcr.io/douglassantanna/myapp3.1:$(tag)
     #   displayName: 'Tag Docker Image'
