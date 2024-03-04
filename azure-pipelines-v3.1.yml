@@ -1,0 +1,30 @@
+trigger:
+- none
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      
+    - script: docker login -u $(GITHUB_USERNAME) -p $(GITHUB_TOKEN) ghcr.io
+      displayName: 'Docker login'
+      env:
+        GITHUB_USERNAME: $(githubUsername)
+        GITHUB_TOKEN: $(githubToken)
+    
+    # - script: docker build -t docker.pkg.github.com/OWNER/REPO/IMAGE_NAME:TAG .
+    #   displayName: 'Build Docker Image'
+
+    # - script: docker push docker.pkg.github.com/OWNER/REPO/IMAGE_NAME:TAG
+    #   displayName: 'Push Docker Image'
