@@ -27,8 +27,8 @@ stages:
     - script: cd dotnet && docker build -t $(retailerName) .
       displayName: 'Build Docker Image'
 
-    - script: docker tag $(retailerName) ghcr.io/douglassantanna/myapp3.1/:$(retailerName)V$(tag)
+    - script: docker tag $(retailerName) ghcr.io/douglassantanna/myapp3.1:$(retailerName)V$(tag)
       displayName: 'Tag Docker Image'
       
-    - script: docker push ghcr.io/douglassantanna/myapp3.1/:$(retailerName)V$(tag)
+    - script: docker push ghcr.io/douglassantanna/myapp3.1:$(retailerName)V$(tag)
       displayName: 'Push Docker Image'
