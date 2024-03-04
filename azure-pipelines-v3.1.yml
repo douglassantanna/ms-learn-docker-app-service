@@ -6,7 +6,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
-  dockerfile: dotnet/Dockerfile
+  retailerName: nike
 
 stages:
 - stage: Build
@@ -24,14 +24,14 @@ stages:
         GITHUB_USERNAME: $(githubUsername)
         GITHUB_TOKEN: $(githubToken)
     
-    - script: cd dotnet && docker build -t newimage .
+    - script: cd dotnet && docker build -t $(retailerName) .
       displayName: 'Build Docker Image'
-    
+
+    - script: docker tag $(retailerName) ghcr.io/douglassantanna/myapp3.1:$(retailerName)/$(tag)
+      displayName: 'Tag Docker Image'
+
     - script: docker images
       displayName: 'Docker Image'
-
-    # - script: docker tag currentImage ghcr.io/douglassantanna/myapp3.1:$(tag)
-    #   displayName: 'Tag Docker Image'
-
+      
     # - script: docker push ghcr.io/douglassantanna/myapp3.1:$(tag)
     #   displayName: 'Push Docker Image'
