@@ -6,6 +6,7 @@ resources:
 
 variables:
   tag: '$(Build.BuildId)'
+  dockerfile: dotnet/Dockerfile
 
 stages:
 - stage: Build
@@ -23,7 +24,7 @@ stages:
         GITHUB_USERNAME: $(githubUsername)
         GITHUB_TOKEN: $(githubToken)
     
-    - script: docker build -t ghcr.io/douglassantanna/myapp3.1:$(tag) .
+    - script: docker build -t dockerfile
       displayName: 'Build Docker Image'
 
     # - script: docker push docker.pkg.github.com/OWNER/REPO/IMAGE_NAME:TAG
