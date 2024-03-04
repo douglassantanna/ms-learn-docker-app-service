@@ -24,7 +24,7 @@ stages:
         GITHUB_USERNAME: $(githubUsername)
         GITHUB_TOKEN: $(githubToken)
     
-    - script: cd dotnet && docker build -t currentImage .
+    - script: cd dotnet && docker build -t newimage .
       displayName: 'Build Docker Image'
 
     # - script: docker tag currentImage ghcr.io/douglassantanna/myapp3.1:$(tag)
