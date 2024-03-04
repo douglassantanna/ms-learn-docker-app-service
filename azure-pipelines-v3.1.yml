@@ -24,8 +24,11 @@ stages:
         GITHUB_USERNAME: $(githubUsername)
         GITHUB_TOKEN: $(githubToken)
     
-    - script: docker build -t $(dockerfile)
+    - script: docker build -t currentImage $(dockerfile)
       displayName: 'Build Docker Image'
 
-    # - script: docker push docker.pkg.github.com/OWNER/REPO/IMAGE_NAME:TAG
+    # - script: docker tag currentImage ghcr.io/douglassantanna/myapp3.1:$(tag)
+    #   displayName: 'Tag Docker Image'
+
+    # - script: docker push ghcr.io/douglassantanna/myapp3.1:$(tag)
     #   displayName: 'Push Docker Image'
