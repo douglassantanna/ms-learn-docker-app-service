@@ -1,0 +1,34 @@
+trigger:
+- none
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  retailerName: nike
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+      
+    - script: docker login -u $(GITHUB_USERNAME) -p $(GITHUB_TOKEN) ghcr.io
+      displayName: 'Docker login'
+      env:
+        GITHUB_USERNAME: $(githubUsername)
+        GITHUB_TOKEN: $(githubToken)
+    
+    - script: cd dotnet && docker build -t $(retailerName) .
+      displayName: 'Build Docker Image'
+
+    - script: docker tag $(retailerName) ghcr.io/douglassantanna/myapp3.1:$(retailerName)V$(tag)
+      displayName: 'Tag Docker Image'
+      
+    - script: docker push ghcr.io/douglassantanna/myapp3.1:$(retailerName)V$(tag)
+      displayName: 'Push Docker Image'
